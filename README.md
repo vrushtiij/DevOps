@@ -6,7 +6,7 @@
 - [Git](https://git-scm.com/)  
 - [Terraform](https://developer.hashicorp.com/terraform/downloads) added to PATH  
 - [AWS CLI](https://aws.amazon.com/cli/) installed and configured (`aws configure`)  
-- An **EC2 key pair** (e.g., `devops-key`) either created in AWS or imported from the repo  
+- An **EC2 key pair** (e.g., `devops-key`) created in AWS   
 
 ## Setup Instructions
 
