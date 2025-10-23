@@ -4,4 +4,3 @@ We will use it to demonstrate Git commands:
 - push
 - pull
 - revert
-Adding a new line to test Git commands.
