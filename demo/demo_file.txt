@@ -1,0 +1,6 @@
+This is a demo file for T053.
+We will use it to demonstrate Git commands:
+- commit
+- push
+- pull
+- revert
