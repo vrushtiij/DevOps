@@ -1,31 +1,28 @@
-       pipeline {
+pipeline {
     agent any
 
     stages {
-        stage('Pull Repo') {
+        stage('Checkout') {
             steps {
-                // Pull your T053 branch from GitHub
+                // Pull the repo
                 git branch: 'T053', url: 'https://github.com/vrushtiij/DevOps.git'
             }
         }
 
-        stage('Setup MySQL') {
+        stage('Run MySQL SQL File') {
             steps {
-                // Pull MySQL Docker image and run container
-                sh '''
-                docker pull mysql:latest
-                docker run --name company-mysql -e MYSQL_ROOT_PASSWORD=root -d -p 3306:3306 mysql:latest
-                '''
+                // Run your SQL script on Windows
+                bat '"C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysql.exe" -u root -pYourPassword Company < "C:\\Users\\Arya Rai\\OneDrive\\Desktop\\DevOps\\db\\init.sql"'
             }
         }
 
-        stage('Run SQL') {
+        stage('Demo Git Commands') {
             steps {
-                // Copy your SQL file into the container and execute it
-                sh '''
-                docker cp db/init.sql company-mysql:/init.sql
-                docker exec -i company-mysql mysql -uroot -proot < /init.sql
-                '''
+                // Demo push/pull (you can adjust for your own changes)
+                bat 'echo "This is a demo file for T053" > demo\\demo_file.txt'
+                bat 'git add demo\\demo_file.txt'
+                bat 'git commit -m "Updated demo file from Jenkins pipeline"'
+                bat 'git push origin T053'
             }
         }
     }
