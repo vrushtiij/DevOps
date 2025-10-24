@@ -10,7 +10,7 @@ pipeline {
 
         stage('Run MySQL SQL File') {
             steps {
-                bat """
+                sh """
                 REM Run MySQL commands from init.sql
                 "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysql.exe" -u AryaRai -pArya@2008 Company < "C:\\Users\\Arya Rai\\OneDrive\\Desktop\\DevOps\\db\\init.sql"
                 """
@@ -19,7 +19,7 @@ pipeline {
 
         stage('Demo Git Commands') {
             steps {
-                bat """
+                sh """
                 REM Demo Git workflow
                 git status
                 git add .
