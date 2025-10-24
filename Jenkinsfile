@@ -12,7 +12,7 @@ pipeline {
             steps {
                 sh """
                 # Run MySQL commands from init.sql
-                "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysql.exe" -u AryaRai -pArya@2008 Company < "C:\\Users\\Arya Rai\\OneDrive\\Desktop\\DevOps\\db\\init.sql"
+                mysql -u AryaRai -pArya@2008 Company < db/init.sql
                 """
             }
         }
