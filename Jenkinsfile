@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Run MySQL and Execute Queries') {
             steps {
-                echo "🚀 Starting temporary MySQL container with full logging..."
+                echo " Starting temporary MySQL container with full logging..."
                 sh '''
                 # Remove old container if it exists
                 docker rm -f ${MYSQL_CONTAINER_NAME} || true
@@ -41,28 +41,28 @@ EOF
                     -d ${MYSQL_IMAGE}
 
                 # Wait until MySQL is ready
-                echo "⏳ Waiting for MySQL to initialize..."
+                echo "Waiting for MySQL to initialize..."
                 until docker exec ${MYSQL_CONTAINER_NAME} mysql -uroot -p${MYSQL_ROOT_PASSWORD} -e "SELECT 1;" >/dev/null 2>&1; do
-                    echo "⏳ MySQL not ready yet, retrying in 2 seconds..."
+                    echo " MySQL not ready yet, retrying in 2 seconds..."
                     sleep 2
                 done
-                echo "✅ MySQL is ready!"
+                echo " MySQL is ready!"
 
                 # Show table before deletion
-                echo "🔍 Records before deletion:"
+                echo " Records before deletion:"
                 docker exec ${MYSQL_CONTAINER_NAME} mysql -uroot -p${MYSQL_ROOT_PASSWORD} -e "USE company; SELECT * FROM employee;"
 
                 # Delete one record
-                echo "🗑 Deleting employee 'Bob'..."
+                echo " Deleting employee 'Bob'..."
                 docker exec ${MYSQL_CONTAINER_NAME} mysql -uroot -p${MYSQL_ROOT_PASSWORD} -e "USE company; DELETE FROM employee WHERE name='Bob';"
 
                 # Show table after deletion
-                echo "🔍 Records after deletion:"
+                echo " Records after deletion:"
                 docker exec ${MYSQL_CONTAINER_NAME} mysql -uroot -p${MYSQL_ROOT_PASSWORD} -e "USE company; SELECT * FROM employee;"
 
                 # Remove container to free memory
                 docker rm -f ${MYSQL_CONTAINER_NAME}
-                echo "✅ MySQL container removed. All queries executed."
+                echo " MySQL container removed. All queries executed."
                 '''
             }
         }
