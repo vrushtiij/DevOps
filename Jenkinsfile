@@ -41,7 +41,7 @@ EOF
                     -d ${MYSQL_IMAGE}
 
                 # Wait until MySQL is ready
-                echo "Waiting for MySQL to initialize..."
+                echo " Waiting for MySQL to initialize..."
                 until docker exec ${MYSQL_CONTAINER_NAME} mysql -uroot -p${MYSQL_ROOT_PASSWORD} -e "SELECT 1;" >/dev/null 2>&1; do
                     echo " MySQL not ready yet, retrying in 2 seconds..."
                     sleep 2
@@ -53,7 +53,7 @@ EOF
                 docker exec ${MYSQL_CONTAINER_NAME} mysql -uroot -p${MYSQL_ROOT_PASSWORD} -e "USE company; SELECT * FROM employee;"
 
                 # Delete one record
-                echo " Deleting employee 'Bob'..."
+                echo "🗑 Deleting employee 'Bob'..."
                 docker exec ${MYSQL_CONTAINER_NAME} mysql -uroot -p${MYSQL_ROOT_PASSWORD} -e "USE company; DELETE FROM employee WHERE name='Bob';"
 
                 # Show table after deletion
